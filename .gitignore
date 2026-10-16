@@ -1,0 +1,9 @@
+# Visual Studio / build output
+.vs/
+**/bin/
+**/obj/
+*.csproj.user
+*.suo
+
+# Miscellaneous
+.DS_Store
