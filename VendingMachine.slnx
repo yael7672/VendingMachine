@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
+    <File Path="VendingMachine_Method_Comments.patch" />
   </Folder>
   <Project Path="VendingMachine.Api/VendingMachine.Api.csproj" />
   <Project Path="VendingMachine.Tests/VendingMachine.Tests.csproj" />

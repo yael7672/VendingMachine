@@ -6,6 +6,9 @@ namespace VendingMachine.Api.DTOs;
 
 public static class ResponseMapper
 {
+    /// <summary>
+    /// Converts a machine and its shelves to an API response.
+    /// </summary>
     public static MachineResponse ToResponse(this VendingMachineEntity machine)
     {
         return new MachineResponse(
@@ -16,6 +19,9 @@ public static class ResponseMapper
             machine.Shelves.Select(s => s.ToResponse()).ToList());
     }
 
+    /// <summary>
+    /// Converts a shelf and its inventory snapshot to an API response.
+    /// </summary>
     public static ShelfResponse ToResponse(this Shelf shelf)
     {
         var inventory = shelf.Inventory

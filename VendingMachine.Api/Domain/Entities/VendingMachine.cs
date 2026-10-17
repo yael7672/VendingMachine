@@ -23,6 +23,9 @@ public class VendingMachine
         }
     }
 
+    /// <summary>
+    /// Creates a machine with validated settings and no shelves.
+    /// </summary>
     public VendingMachine(string name, string? location, int maxShelves)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -38,6 +41,9 @@ public class VendingMachine
         MaxShelves = maxShelves;
     }
 
+    /// <summary>
+    /// Adds a shelf without exceeding the machine's maximum shelf count.
+    /// </summary>
     public Shelf AddShelf(string productType, int capacity)
     {
         // Keep capacity validation and shelf creation atomic.

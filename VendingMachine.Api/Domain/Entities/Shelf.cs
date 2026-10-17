@@ -36,6 +36,9 @@ public class Shelf
         }
     }
 
+    /// <summary>
+    /// Creates an empty shelf with a product category and capacity.
+    /// </summary>
     public Shelf(string productType, int capacity)
     {
         if (string.IsNullOrWhiteSpace(productType))
@@ -51,6 +54,9 @@ public class Shelf
         Capacity = capacity;
     }
 
+    /// <summary>
+    /// Loads matching products without exceeding the shelf capacity.
+    /// </summary>
     public void LoadProducts(Product product, int quantity)
     {
         ArgumentNullException.ThrowIfNull(product);
@@ -89,6 +95,9 @@ public class Shelf
         }
     }
 
+    /// <summary>
+    /// Removes purchased units from the shelf when enough stock exists.
+    /// </summary>
     public void PurchaseProduct(string productCode, int quantity)
     {
         if (string.IsNullOrWhiteSpace(productCode))

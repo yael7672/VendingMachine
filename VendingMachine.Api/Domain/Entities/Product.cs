@@ -6,6 +6,9 @@ public class Product
     public string Name { get; }
     public string ProductType { get; }
 
+    /// <summary>
+    /// Creates a product after validating its identifying details.
+    /// </summary>
     public Product(string code, string name, string productType)
     {
         if (string.IsNullOrWhiteSpace(code))

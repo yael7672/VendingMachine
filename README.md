@@ -43,6 +43,62 @@ dotnet test
 | POST | /api/machines/{machineId}/shelves/{shelfId}/inventory | Load inventory |
 | POST | /api/machines/{machineId}/shelves/{shelfId}/purchase | Purchase products (bonus) |
 
+
+## Example Usage
+
+The following example demonstrates the main API flow.
+
+### 1. Create a machine
+
+POST /api/machines
+
+```json
+{
+  "name": "Machine A",
+  "location": "Tel Aviv",
+  "maxShelves": 5
+}
+```
+
+Expected response: 201 Created.
+
+### 2. Add a shelf
+
+POST /api/machines/{machineId}/shelves
+
+```json
+{
+  "productType": "BottledDrink",
+  "capacity": 10
+}
+```
+
+Expected response: 201 Created.
+
+### 3. Load inventory
+
+POST /api/machines/{machineId}/shelves/{shelfId}/inventory
+
+```json
+{
+  "productCode": "WATER",
+  "productName": "Water",
+  "productType": "BottledDrink",
+  "quantity": 5
+}
+```
+
+Expected response: 200 OK.
+
+The shelf now contains 5 water bottles.
+
+### Error Responses
+
+- 400 Bad Request: Invalid input data.
+- 404 Not Found: Machine or shelf does not exist.
+- 409 Conflict: Business rule violation, such as exceeding shelf capacity.
+
+
 ## Business Rules
 
 - Each machine has a maximum number of shelves.
@@ -85,7 +141,8 @@ dotnet test
 1. Can a shelf contain multiple products of the same category?
 2. Should product categories be predefined or managed dynamically?
 3. Should administrators be able to update or remove shelves?
-4. Should inventory operations support concurrent requests?
+4. What consistency guarantees are required when the system
+   runs across multiple server instances?
 5. Should product details be managed in a central catalog?
 6. Are stock transfers between machines required?
 7. What authentication and authorization rules are required for administrators?

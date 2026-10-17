@@ -10,11 +10,17 @@ public class ShelvesController : ControllerBase
 {
     private readonly VendingMachineService _service;
 
+    /// <summary>
+    /// Initializes the controller with the application service.
+    /// </summary>
     public ShelvesController(VendingMachineService service)
     {
         _service = service;
     }
 
+    /// <summary>
+    /// Adds a shelf to a machine and returns HTTP 201.
+    /// </summary>
     [HttpPost]
     [ProducesResponseType(
         typeof(ShelfResponse),
@@ -34,6 +40,9 @@ public class ShelvesController : ControllerBase
             shelf.ToResponse());
     }
 
+    /// <summary>
+    /// Returns the requested shelf and its current inventory.
+    /// </summary>
     [HttpGet("{shelfId:guid}")]
     public ActionResult<ShelfResponse> GetShelf(
         Guid machineId,
@@ -44,6 +53,9 @@ public class ShelvesController : ControllerBase
         return Ok(shelf.ToResponse());
     }
 
+    /// <summary>
+    /// Loads product units into a shelf and returns the updated shelf.
+    /// </summary>
     [HttpPost("{shelfId:guid}/inventory")]
     public ActionResult<ShelfResponse> LoadInventory(
         Guid machineId,
@@ -61,6 +73,9 @@ public class ShelvesController : ControllerBase
         return Ok(shelf.ToResponse());
     }
 
+    /// <summary>
+    /// Purchases product units and returns the updated shelf.
+    /// </summary>
     [HttpPost("{shelfId:guid}/purchase")]
     public ActionResult<ShelfResponse> PurchaseProduct(
         Guid machineId,

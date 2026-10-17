@@ -10,11 +10,17 @@ public class MachinesController : ControllerBase
 {
     private readonly VendingMachineService _service;
 
+    /// <summary>
+    /// Initializes the controller with the application service.
+    /// </summary>
     public MachinesController(VendingMachineService service)
     {
         _service = service;
     }
 
+    /// <summary>
+    /// Creates a machine and returns HTTP 201 with its details.
+    /// </summary>
     [HttpPost]
     [ProducesResponseType(
         typeof(MachineResponse),
@@ -33,6 +39,9 @@ public class MachinesController : ControllerBase
             machine.ToResponse());
     }
 
+    /// <summary>
+    /// Returns all machines with HTTP 200.
+    /// </summary>
     [HttpGet]
     public ActionResult<IEnumerable<MachineResponse>> GetAll()
     {
@@ -43,6 +52,9 @@ public class MachinesController : ControllerBase
         return Ok(machines);
     }
 
+    /// <summary>
+    /// Returns a machine by ID with HTTP 200.
+    /// </summary>
     [HttpGet("{id:guid}")]
     public ActionResult<MachineResponse> GetMachine(Guid id)
     {

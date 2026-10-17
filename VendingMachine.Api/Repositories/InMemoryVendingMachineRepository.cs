@@ -9,6 +9,9 @@ public class InMemoryVendingMachineRepository
     private readonly ConcurrentDictionary<Guid, VendingMachineEntity>
         _machines = new();
 
+    /// <summary>
+    /// Stores a machine in the in-memory collection.
+    /// </summary>
     public void Add(VendingMachineEntity machine)
     {
         ArgumentNullException.ThrowIfNull(machine);
@@ -20,6 +23,9 @@ public class InMemoryVendingMachineRepository
         }
     }
 
+    /// <summary>
+    /// Finds a stored machine by its identifier.
+    /// </summary>
     public VendingMachineEntity? GetById(Guid id)
     {
         _machines.TryGetValue(id, out var machine);
@@ -27,6 +33,9 @@ public class InMemoryVendingMachineRepository
         return machine;
     }
 
+    /// <summary>
+    /// Returns a snapshot of all stored machines.
+    /// </summary>
     public IReadOnlyCollection<VendingMachineEntity> GetAll()
     {
         return _machines.Values.ToList().AsReadOnly();
